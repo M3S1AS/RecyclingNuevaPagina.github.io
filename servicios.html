@@ -1,0 +1,1069 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Servicios – SC Recycling S.A.</title>
+  <meta name="description" content="Diseño y fabricación de Madera Ecológica, suministro de materias primas recuperadas, manejo de excedentes industriales y más. SC Recycling S.A., Itagüí." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="palette.css" />
+
+  <!-- ── Estilos propios de esta página (inline para no crear archivo extra) ── -->
+  <style>
+    /* ── PAGE HERO ── */
+    .page-hero {
+      position: relative;
+      background: linear-gradient(130deg, #10192e 0%, #1a2645 50%, #1e2f54 100%);
+      overflow: hidden;
+      padding: 90px 0 72px;
+      display: flex;
+      align-items: center;
+    }
+    .page-hero__word {
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      font-family: var(--font-cond);
+      font-size: clamp(5rem, 17vw, 15rem);
+      font-weight: 900;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.04);
+      white-space: nowrap;
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .page-hero__inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .page-hero__breadcrumb {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-cond);
+      font-size: .74rem;
+      font-weight: 600;
+      letter-spacing: .1em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.35);
+      margin-bottom: 18px;
+    }
+    .page-hero__breadcrumb a { color: rgba(255,255,255,.5); transition: var(--tr); }
+    .page-hero__breadcrumb a:hover { color: var(--white); }
+    .page-hero__breadcrumb span:last-child { color: rgba(255,255,255,.65); }
+    .page-hero__title {
+      display: flex;
+      flex-direction: column;
+      line-height: 1;
+      margin-bottom: 20px;
+    }
+    .page-hero__title--thin {
+      font-family: var(--font-cond);
+      font-size: clamp(1.8rem, 5vw, 4rem);
+      font-weight: 300;
+      letter-spacing: .1em;
+      color: rgba(255,255,255,.38);
+    }
+    .page-hero__title--bold {
+      font-family: var(--font-cond);
+      font-size: clamp(3rem, 8vw, 7rem);
+      font-weight: 900;
+      letter-spacing: .02em;
+      color: var(--white);
+      line-height: .95;
+    }
+    .page-hero__desc {
+      font-size: .97rem;
+      color: rgba(255,255,255,.45);
+      max-width: 460px;
+      line-height: 1.75;
+      font-weight: 300;
+    }
+    /* Pills de acceso rápido */
+    .page-hero__pills {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      align-self: center;
+      flex-shrink: 0;
+    }
+    .svc-pill {
+      display: block;
+      font-family: var(--font-cond);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      border: 1px solid rgba(255,255,255,.1);
+      padding: 7px 20px;
+      border-radius: var(--radius-full);
+      transition: var(--tr);
+      white-space: nowrap;
+      cursor: pointer;
+    }
+    .svc-pill:hover {
+      color: var(--white);
+      background: rgba(52,76,148,.45);
+      border-color: var(--blue);
+    }
+
+    /* ── BLOQUES DE SERVICIO ── */
+    .svc-block { padding: 96px 0; background: var(--white); }
+    .svc-block--alt { background: var(--bg-2); }
+    .svc-block__grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 72px;
+      align-items: center;
+    }
+    .svc-block__grid--rev { direction: rtl; }
+    .svc-block__grid--rev > * { direction: ltr; }
+
+    /* Imagen placeholder con gradiente y número */
+    .svc-block__img {
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: var(--radius-lg);
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+    }
+    .svc-block__img--1 { background: linear-gradient(145deg,#1a3d1a,#2d6b3f,#1f4a25); }
+    .svc-block__img--2 { background: linear-gradient(145deg,#0d2040,#1a3a6a,#0e2440); }
+    .svc-block__img--3 { background: linear-gradient(145deg,#2a1a0e,#5a3520,#3a2210); }
+    .svc-block__img--4 { background: linear-gradient(145deg,#101a3a,#1e2a5a,#263872); }
+    .svc-block__img--5 { background: linear-gradient(145deg,#1a0a2a,#3a1a5a,#261040); }
+    .svc-block__imgnum {
+      font-family: var(--font-cond);
+      font-size: clamp(5rem, 10vw, 9rem);
+      font-weight: 900;
+      color: rgba(255,255,255,.1);
+      line-height: 1;
+      letter-spacing: -.04em;
+      user-select: none;
+      position: absolute;
+      bottom: 12px; right: 20px;
+    }
+
+    /* Texto del bloque */
+    .svc-block__title {
+      font-family: var(--font-title);
+      font-size: clamp(1.6rem, 2.8vw, 2.2rem);
+      font-weight: 800;
+      color: var(--text-900);
+      line-height: 1.25;
+      margin-bottom: 16px;
+    }
+    .svc-block__lead {
+      font-size: 1rem;
+      color: var(--text-400);
+      line-height: 1.8;
+      margin-bottom: 22px;
+    }
+    .svc-block__list {
+      display: flex;
+      flex-direction: column;
+      gap: 11px;
+      margin-bottom: 32px;
+    }
+    .svc-block__list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: .93rem;
+      color: var(--text-600);
+      line-height: 1.6;
+    }
+    .svc-block__list li svg {
+      width: 16px; height: 16px;
+      color: var(--blue);
+      flex-shrink: 0;
+      margin-top: 3px;
+    }
+    .svc-block__list li strong { color: var(--text-900); }
+
+    /* Tags de materiales */
+    .mat-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-bottom: 28px;
+    }
+    .mat-tag {
+      font-family: var(--font-cond);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .1em;
+      color: var(--blue);
+      background: var(--blue-xlight);
+      border: 1px solid var(--border-mid);
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+    }
+
+    /* Sub-cards (servicio 01) */
+    .subcards {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .subcard {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: var(--tr);
+    }
+    .subcard:hover {
+      border-color: var(--blue);
+      background: var(--blue-xlight);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    .subcard__icon {
+      width: 32px; height: 32px;
+      background: var(--blue-xlight);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .subcard__icon svg { width: 15px; height: 15px; }
+    .subcard span { font-size: .83rem; font-weight: 600; color: var(--text-600); }
+
+    /* Steps proceso (servicio 02) */
+    .steps-box {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 22px 24px;
+      margin-top: 18px;
+      box-shadow: var(--shadow-sm);
+    }
+    .step {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      padding: 8px 0;
+    }
+    .step__dot {
+      width: 10px; height: 10px;
+      background: var(--blue);
+      border-radius: 50%;
+      flex-shrink: 0;
+      box-shadow: 0 0 0 3px var(--blue-xlight);
+    }
+    .step__text { display: flex; flex-direction: column; }
+    .step__text strong { font-size: .88rem; font-weight: 600; color: var(--text-900); }
+    .step__text span   { font-size: .77rem; color: var(--text-300); }
+    .step__line { width: 2px; height: 20px; background: var(--border); margin-left: 4px; }
+
+    /* Tipos de plástico (servicio 03) */
+    .buy-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 8px;
+      margin-top: 18px;
+    }
+    .buy-item {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 11px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: .83rem;
+      font-weight: 600;
+      color: var(--text-600);
+      transition: var(--tr);
+    }
+    .buy-item:hover { border-color: var(--blue); color: var(--blue); background: var(--blue-xlight); }
+    .buy-item__bar {
+      width: 4px; height: 18px;
+      background: var(--blue);
+      border-radius: 2px;
+      flex-shrink: 0;
+      opacity: .45;
+    }
+    .buy-item--span2 {
+      grid-column: span 2;
+      background: var(--blue-xlight);
+      border-color: var(--blue);
+      color: var(--blue);
+      font-size: .8rem;
+    }
+
+    /* Support cards (servicio 04) */
+    .support-cards {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 30px;
+    }
+    .support-card {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: var(--bg);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      padding: 15px 16px;
+      transition: var(--tr);
+    }
+    .support-card:hover {
+      border-color: var(--blue);
+      background: var(--blue-xlight);
+    }
+    .support-card__icon {
+      width: 36px; height: 36px;
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      flex-shrink: 0;
+    }
+    .support-card__icon svg { width: 15px; height: 15px; }
+    .support-card div { display: flex; flex-direction: column; gap: 2px; }
+    .support-card strong { font-size: .88rem; font-weight: 600; color: var(--text-900); }
+    .support-card span   { font-size: .81rem; color: var(--text-400); line-height: 1.5; }
+
+    /* Stat badge (servicio 04) */
+    .stat-badge {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--white);
+      border: 2px solid var(--blue);
+      border-radius: var(--radius-lg);
+      padding: 18px 28px;
+      box-shadow: var(--shadow-lg);
+      margin-top: 18px;
+    }
+    .stat-badge__num {
+      font-family: var(--font-cond);
+      font-size: 2.8rem;
+      font-weight: 900;
+      color: var(--blue);
+      line-height: 1;
+      letter-spacing: -.02em;
+    }
+    .stat-badge__label {
+      font-size: .75rem;
+      color: var(--text-400);
+      font-weight: 500;
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    /* Market tags (servicio 05) */
+    .market-tags {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 18px;
+    }
+    .market-tag {
+      background: var(--white);
+      border: 1.5px solid var(--border);
+      border-left: 4px solid var(--blue);
+      border-radius: var(--radius);
+      padding: 14px 18px;
+      transition: var(--tr);
+    }
+    .market-tag:hover { box-shadow: var(--shadow-md); transform: translateX(4px); }
+    .market-tag strong { display: block; font-family: var(--font-cond); font-size: .95rem; font-weight: 700; color: var(--text-900); letter-spacing: .04em; }
+    .market-tag span   { font-size: .8rem; color: var(--text-400); }
+
+    /* ── CTA FINAL ── */
+    .page-cta {
+      position: relative;
+      padding: 96px 0;
+      overflow: hidden;
+    }
+    .page-cta__bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(130deg, #10192e 0%, #1a2645 60%, #1e2f54 100%);
+    }
+    .page-cta__bg::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Ccircle cx='30' cy='30' r='20'/%3E%3C/g%3E%3C/svg%3E");
+    }
+    .page-cta__inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 48px;
+      flex-wrap: wrap;
+    }
+    .page-cta__title {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .page-cta__title em { color: #7b9adf; }
+    .page-cta p {
+      font-size: .97rem;
+      color: rgba(255,255,255,.48);
+      max-width: 420px;
+      line-height: 1.7;
+    }
+    .page-cta__actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      flex-shrink: 0;
+    }
+    .btn--white {
+      background: var(--white);
+      color: var(--blue);
+      border: 2px solid var(--white);
+    }
+    .btn--white:hover {
+      background: var(--blue-xlight);
+      transform: translateY(-2px);
+    }
+    .btn--ghost-light {
+      background: transparent;
+      color: rgba(255,255,255,.65);
+      border: 1.5px solid rgba(255,255,255,.25);
+    }
+    .btn--ghost-light:hover {
+      border-color: rgba(255,255,255,.6);
+      color: var(--white);
+    }
+    .section__tag--light {
+      color: rgba(255,255,255,.65);
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.14);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 960px) {
+      .svc-block__grid { grid-template-columns: 1fr; gap: 44px; }
+      .svc-block__grid--rev { direction: ltr; }
+      .page-hero__inner { flex-direction: column; align-items: flex-start; gap: 28px; }
+      .page-hero__pills { flex-direction: row; flex-wrap: wrap; }
+      .page-cta__inner { flex-direction: column; text-align: center; }
+      .page-cta__actions { justify-content: center; }
+      .page-cta p { max-width: 100%; margin: 0 auto; }
+    }
+    @media (max-width: 600px) {
+      .page-hero { padding: 64px 0 48px; }
+      .svc-block { padding: 68px 0; }
+      .subcards { grid-template-columns: 1fr; }
+      .buy-grid { grid-template-columns: 1fr; }
+      .buy-item--span2 { grid-column: span 1; }
+      .page-cta { padding: 72px 0; }
+    }
+    @media (max-width: 760px) {
+      .page-hero {
+        padding: 58px 0 46px;
+        min-height: auto;
+      }
+      .page-hero__word {
+        top: auto;
+        bottom: -8px;
+        left: 50%;
+        transform: translateX(-50%);
+        font-size: clamp(4.2rem, 22vw, 8rem);
+        letter-spacing: .04em;
+      }
+      .page-hero__inner {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 30px;
+      }
+      .page-hero__title--thin {
+        font-size: clamp(1.6rem, 11vw, 3rem);
+      }
+      .page-hero__title--bold {
+        font-size: clamp(2.8rem, 16vw, 5rem);
+      }
+      .page-hero__desc {
+        max-width: 100%;
+        font-size: .92rem;
+      }
+      .page-hero__pills {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 8px;
+      }
+      .svc-pill {
+        text-align: center;
+        white-space: normal;
+        padding: 8px 10px;
+        line-height: 1.25;
+      }
+      .svc-block__grid { gap: 34px; }
+      .svc-block__img {
+        min-height: 240px;
+        padding: 20px;
+      }
+      .svc-block__imgnum { font-size: clamp(4rem, 26vw, 7rem); }
+      .steps-box,
+      .stat-badge {
+        width: 100%;
+      }
+      .page-cta__actions {
+        width: 100%;
+      }
+      .page-cta__actions .btn {
+        width: 100%;
+      }
+    }
+    @media (max-width: 420px) {
+      .page-hero__pills { grid-template-columns: 1fr; }
+      .svc-block { padding: 56px 0; }
+      .svc-block__title { font-size: 1.45rem; }
+      .svc-block__lead,
+      .svc-block__list li {
+        font-size: .9rem;
+      }
+      .mat-tags { gap: 6px; }
+      .mat-tag { padding: 5px 10px; }
+      .support-card,
+      .market-tag,
+      .steps-box {
+        padding: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="topbar__inner container">
+      <span class="topbar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        PBX: (57) (4) 281 9068
+      </span>
+      <span class="topbar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lun – Vie &nbsp;·&nbsp; 7:00am – 5:00pm
+      </span>
+      <span class="topbar__item topbar__item--loc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        CL 51 No. 40-98, Itagüí, Colombia
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="social-rail" id="social-rail">
+      <a href="#" class="social-rail__link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="social-rail__link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="#" class="social-rail__link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+    </div>
+
+    <div class="navbar__inner container">
+      <a href="index.html" class="navbar__logo">
+        <img src="LOGO SC RECYCLING.png" alt="SC Recycling S.A." class="logo-img" />
+        <div class="logo-text">
+          <span class="lt-sc">SC</span>
+          <span class="lt-rec">Recycling</span>
+          <span class="lt-sa">S.A.</span>
+        </div>
+      </a>
+
+      <nav class="navbar__nav" id="nav-menu">
+        <a href="index.html#about" class="nav-link">Empresa</a>
+        <a href="servicios.html" class="nav-link nav-link--active">Servicios</a>
+        <div class="nav-dropdown">
+          <a href="productos.html" class="nav-link">
+            Productos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="11"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="materia-prima.html" class="dropdown-item">Materia Prima</a>
+            <div class="dropdown-sub">
+              <span class="dropdown-item dropdown-item--parent">
+                Madera Ecológica
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="9"><polyline points="9 18 15 12 9 6"/></svg>
+              </span>
+              <div class="dropdown-submenu">
+                <a href="decks.html"      class="dropdown-item">Decks</a>
+                <a href="estibas.html"    class="dropdown-item">Estibas</a>
+                <a href="mobiliario.html" class="dropdown-item">Mobiliario</a>
+                <a href="parques.html"    class="dropdown-item">Parques Infantiles</a>
+                <a href="perfiles.html"   class="dropdown-item">Perfiles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="galeria.html"  class="nav-link">Galería</a>
+        <a href="contacto.html" class="nav-link nav-link--cta">Contacto</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== PAGE HERO ===== -->
+  <section class="page-hero">
+    <div class="page-hero__word" aria-hidden="true">SERVICIOS</div>
+    <div class="container page-hero__inner">
+      <div>
+        <div class="page-hero__breadcrumb">
+          <a href="index.html">Inicio</a>
+          <span>/</span>
+          <span>Servicios</span>
+        </div>
+        <div class="page-hero__title">
+          <span class="page-hero__title--thin">LO QUE</span>
+          <span class="page-hero__title--bold">HACEMOS</span>
+          <span class="page-hero__title--thin">MEJOR</span>
+        </div>
+        <p class="page-hero__desc">
+          Soluciones integrales para la gestión responsable de residuos plásticos industriales, desde la recolección hasta la transformación en nuevos productos.
+        </p>
+      </div>
+      <div class="page-hero__pills">
+        <a href="#fabricacion"      class="svc-pill">01 · Fabricación</a>
+        <a href="#materias"         class="svc-pill">02 · Materias Primas</a>
+        <a href="#excedentes"       class="svc-pill">03 · Excedentes</a>
+        <a href="#postventa"        class="svc-pill">04 · Post-Venta</a>
+        <a href="#comercializacion" class="svc-pill">05 · Resinas</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 01 FABRICACIÓN ===== -->
+  <section class="svc-block" id="fabricacion">
+    <div class="container">
+      <div class="svc-block__grid">
+
+        <div class="reveal-left">
+          <div class="svc-block__img svc-block__img--1">
+            <div class="svc-block__imgnum">01</div>
+          </div>
+          <div class="subcards">
+            <div class="subcard">
+              <div class="subcard__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg>
+              </div>
+              <span>Eco Mobiliario</span>
+            </div>
+            <div class="subcard">
+              <div class="subcard__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/></svg>
+              </div>
+              <span>Eco Estructuras</span>
+            </div>
+            <div class="subcard">
+              <div class="subcard__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v2"/></svg>
+              </div>
+              <span>Eco Industrial</span>
+            </div>
+            <div class="subcard">
+              <div class="subcard__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+              </div>
+              <span>Eco Perfilería</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="section__tag">Servicio 01</div>
+          <h2 class="svc-block__title">Diseño y Fabricación de Productos en Madera Ecológica</h2>
+          <p class="svc-block__lead">Contamos con un completo inventario de productos en madera ecológica de alta calidad y bajo costo, fabricados a partir del reciclaje de excedentes plásticos industriales.</p>
+          <ul class="svc-block__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Eco Mobiliario:</strong> Sillas, bancas, mesas, basureras, materas y accesorios decorativos.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Eco Estructuras:</strong> Decks, senderos, pérgolas, corta luz, parques infantiles y tapas.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Eco Industrial:</strong> Estibas plásticas para aplicaciones industriales de alta resistencia.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span><strong>Eco Perfilería:</strong> Parales, tablas y tablillas para construcción y urbanismo.</span>
+            </li>
+          </ul>
+          <a href="contacto.html" class="btn btn--primary">Solicitar cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 02 MATERIAS PRIMAS ===== -->
+  <section class="svc-block svc-block--alt" id="materias">
+    <div class="container">
+      <div class="svc-block__grid svc-block__grid--rev">
+
+        <div class="reveal-left">
+          <div class="section__tag">Servicio 02</div>
+          <h2 class="svc-block__title">Suministro de Materias Primas Recuperadas</h2>
+          <p class="svc-block__lead">Contamos con un completo inventario de resinas plásticas recuperadas y ayudantes de proceso para inyección y extrusión. Vendemos y asesoramos técnicamente a empresas de todo tamaño, manejando ventas al detal.</p>
+          <ul class="svc-block__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Mezcla PP+PEBD para proceso de inyección y extrusión — aglutinado o peletizado.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Polietileno PEBD · PEMD · PEAD para extrusión e inyección — aglutinado o peletizado.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Polipropileno (PP) para extrusión e inyección — aglutinado o peletizado.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Aditivos y excedentes textiles para el sector industrial.</span>
+            </li>
+          </ul>
+          <div class="mat-tags">
+            <span class="mat-tag">PEBD</span>
+            <span class="mat-tag">PEMD</span>
+            <span class="mat-tag">PEAD</span>
+            <span class="mat-tag">PP</span>
+            <span class="mat-tag">PP+PEBD</span>
+            <span class="mat-tag">Aditivos</span>
+          </div>
+          <a href="contacto.html" class="btn btn--primary">Solicitar cotización</a>
+        </div>
+
+        <div class="reveal-right">
+          <div class="svc-block__img svc-block__img--2">
+            <div class="svc-block__imgnum">02</div>
+          </div>
+          <div class="steps-box">
+            <div class="step">
+              <div class="step__dot"></div>
+              <div class="step__text"><strong>Recolección</strong><span>Excedentes industriales</span></div>
+            </div>
+            <div class="step__line"></div>
+            <div class="step">
+              <div class="step__dot"></div>
+              <div class="step__text"><strong>Procesamiento</strong><span>Limpieza y triturado</span></div>
+            </div>
+            <div class="step__line"></div>
+            <div class="step">
+              <div class="step__dot"></div>
+              <div class="step__text"><strong>Transformación</strong><span>Aglutinado / peletizado</span></div>
+            </div>
+            <div class="step__line"></div>
+            <div class="step">
+              <div class="step__dot"></div>
+              <div class="step__text"><strong>Distribución</strong><span>Entrega al cliente final</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 03 EXCEDENTES ===== -->
+  <section class="svc-block" id="excedentes">
+    <div class="container">
+      <div class="svc-block__grid">
+
+        <div class="reveal-left">
+          <div class="svc-block__img svc-block__img--3">
+            <div class="svc-block__imgnum">03</div>
+          </div>
+          <div class="buy-grid">
+            <div class="buy-item"><div class="buy-item__bar"></div>PEBD flexible</div>
+            <div class="buy-item"><div class="buy-item__bar"></div>PEAD flexible</div>
+            <div class="buy-item"><div class="buy-item__bar"></div>PP flexible</div>
+            <div class="buy-item"><div class="buy-item__bar"></div>PP+PEBD mezclas</div>
+            <div class="buy-item"><div class="buy-item__bar"></div>PP molido</div>
+            <div class="buy-item buy-item--span2">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="14"><polyline points="20 6 9 17 4 12"/></svg>
+              Aceptamos limpio y sucio
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="section__tag">Servicio 03</div>
+          <h2 class="svc-block__title">Manejo de Excedentes Industriales</h2>
+          <p class="svc-block__lead">Compramos retal plástico procedente de la industria y del comercio. Manejamos materiales limpios y sucios, transparentes y de colores, contribuyendo al cierre del ciclo de vida del plástico.</p>
+          <ul class="svc-block__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>PEBD flexible, transparente y de colores — limpio y sucio.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>PEAD flexible, transparente y de colores — limpio y sucio.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>PP flexible, transparente y de colores — limpio y sucio.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Mezclas PP+PEBD (excedentes pañal) y PP molido transparente y colores.</span>
+            </li>
+          </ul>
+          <a href="contacto.html" class="btn btn--primary">¿Tienes excedentes? Contáctanos</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 04 POST-VENTA ===== -->
+  <section class="svc-block svc-block--alt" id="postventa">
+    <div class="container">
+      <div class="svc-block__grid svc-block__grid--rev">
+
+        <div class="reveal-left">
+          <div class="section__tag">Servicio 04</div>
+          <h2 class="svc-block__title">Servicio Técnico Post-Venta</h2>
+          <p class="svc-block__lead">SC Recycling S.A. cuenta con personal capacitado para prestar soporte técnico en temas relacionados con la transformación de resinas plásticas. Acompañamos a nuestros clientes desde la expresión de sus necesidades hasta la satisfacción total.</p>
+          <div class="support-cards">
+            <div class="support-card">
+              <div class="support-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+              </div>
+              <div>
+                <strong>Procesos de Transformación</strong>
+                <span>Asesoría en condiciones óptimas de proceso para cada resina.</span>
+              </div>
+            </div>
+            <div class="support-card">
+              <div class="support-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 015.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+              </div>
+              <div>
+                <strong>Solución de Problemas</strong>
+                <span>Diagnóstico y corrección de inconvenientes durante la transformación.</span>
+              </div>
+            </div>
+            <div class="support-card">
+              <div class="support-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+              </div>
+              <div>
+                <strong>Optimización de Resultados</strong>
+                <span>Mejora continua de parámetros para maximizar el rendimiento.</span>
+              </div>
+            </div>
+            <div class="support-card">
+              <div class="support-card__icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg>
+              </div>
+              <div>
+                <strong>Acompañamiento Continuo</strong>
+                <span>Seguimiento desde la compra hasta la aplicación final del producto.</span>
+              </div>
+            </div>
+          </div>
+          <a href="contacto.html" class="btn btn--primary">Solicitar soporte técnico</a>
+        </div>
+
+        <div class="reveal-right">
+          <div class="svc-block__img svc-block__img--4">
+            <div class="svc-block__imgnum">04</div>
+          </div>
+          <div class="stat-badge">
+            <div class="stat-badge__num">100%</div>
+            <div class="stat-badge__label">Compromiso con el cliente</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== 05 COMERCIALIZACIÓN ===== -->
+  <section class="svc-block" id="comercializacion">
+    <div class="container">
+      <div class="svc-block__grid">
+
+        <div class="reveal-left">
+          <div class="svc-block__img svc-block__img--5">
+            <div class="svc-block__imgnum">05</div>
+          </div>
+          <div class="market-tags">
+            <div class="market-tag">
+              <strong>Polipropilenos</strong>
+              <span>Aglutinados · Peletizados · Remolidos</span>
+            </div>
+            <div class="market-tag">
+              <strong>Polietilenos</strong>
+              <span>Peletizados de alta calidad</span>
+            </div>
+            <div class="market-tag">
+              <strong>Resinas & Pigmentos</strong>
+              <span>Originales y recuperadas para el sector plástico</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="reveal-right">
+          <div class="section__tag">Servicio 05</div>
+          <h2 class="svc-block__title">Comercialización de Resinas Plásticas</h2>
+          <p class="svc-block__lead">Comercializamos resinas plásticas recuperadas para acceder a todos los mercados y suplir las necesidades de nuestros clientes con la mejor calidad y precio competitivo.</p>
+          <ul class="svc-block__list">
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Polipropilenos comercializados aglutinados, peletizados y remolidos.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Polietilenos comercializados peletizados de alta calidad.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Resinas originales y recuperadas para el sector plástico.</span>
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              <span>Pigmentos y excedentes textiles de diversas industrias.</span>
+            </li>
+          </ul>
+          <a href="contacto.html" class="btn btn--primary">Solicitar cotización</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== CTA FINAL ===== -->
+  <section class="page-cta">
+    <div class="page-cta__bg"></div>
+    <div class="container page-cta__inner">
+      <div class="reveal">
+        <div class="section__tag section__tag--light">¿Desea contactarnos?</div>
+        <h2 class="page-cta__title">¿Tienes un <em>proyecto</em><br/>en mente?</h2>
+        <p>Cuéntanos tu necesidad y te brindaremos la solución más adecuada para tu industria.</p>
+      </div>
+      <div class="page-cta__actions reveal">
+        <a href="contacto.html" class="btn btn--white">Ir a Contacto</a>
+        <a href="index.html"    class="btn btn--ghost-light">Volver al inicio</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__top container">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo footer__logo">
+          <img src="LOGO SC RECYCLING.png" alt="SC Recycling S.A." class="logo-img" />
+          <div class="logo-text">
+            <span class="lt-sc">SC</span>
+            <span class="lt-rec">Recycling</span>
+            <span class="lt-sa">S.A.</span>
+          </div>
+        </a>
+        <p>Empresa Sueco-Colombiana comprometida con el reciclaje responsable y el desarrollo sostenible desde el año 2000.</p>
+        <p class="footer__lema">REDUCE · RECICLA · REUTILIZA</p>
+      </div>
+      <div class="footer__nav">
+        <h5>Navegación</h5>
+        <a href="index.html">Inicio</a>
+        <a href="index.html#about">Empresa</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer__nav">
+        <h5>Productos</h5>
+        <a href="materia-prima.html">Materia Prima</a>
+        <a href="decks.html">Decks</a>
+        <a href="estibas.html">Estibas</a>
+        <a href="mobiliario.html">Mobiliario</a>
+        <a href="parques.html">Parques Infantiles</a>
+        <a href="perfiles.html">Perfiles</a>
+      </div>
+      <div class="footer__contact">
+        <h5>Contacto</h5>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> CL 51 No. 40-98, Itagüí</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg> (57) (4) 281 9068</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lun–Vie 7:00am – 5:00pm</p>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>&copy; 2026 SC Recycling S.A. Todos los derechos reservados.</p>
+      <p>Itagüí, Antioquia, Colombia</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/573000000000?text=Hola%20SC%20Recycling%2C%20quiero%20recibir%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16.02 4.5A11.41 11.41 0 004.6 15.9c0 2.01.53 3.98 1.54 5.7L4.5 27.5l6.04-1.58a11.38 11.38 0 005.48 1.39h.01A11.41 11.41 0 0016.02 4.5zm0 20.86h-.01c-1.71 0-3.38-.46-4.84-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.43 9.43 0 01-1.44-5.03 9.49 9.49 0 119.49 9.46z"/>
+      <path d="M21.22 18.25c-.28-.14-1.68-.83-1.94-.92-.26-.1-.45-.14-.64.14-.19.28-.73.92-.9 1.11-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4a8.5 8.5 0 01-1.57-1.95c-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.68-.69 1.92-1.35.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.55-.33z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+  <script>
+    /* Smooth scroll desde las pills + pill activa al scrollear */
+    (function() {
+      const pills = [...document.querySelectorAll('.svc-pill[href^="#"]')];
+      const sections = pills.map(p => document.querySelector(p.getAttribute('href'))).filter(Boolean);
+
+      pills.forEach(pill => {
+        pill.addEventListener('click', e => {
+          e.preventDefault();
+          const target = document.querySelector(pill.getAttribute('href'));
+          if (target) window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 88, behavior: 'smooth' });
+        });
+      });
+
+      function updatePills() {
+        const y = window.scrollY + 120;
+        let current = sections[0];
+        sections.forEach(s => { if (s.offsetTop <= y) current = s; });
+        pills.forEach((p, i) => p.style.cssText = sections[i] === current ? 'color:#fff;background:rgba(52,76,148,.5);border-color:#344c94' : '');
+      }
+
+      window.addEventListener('scroll', updatePills, { passive: true });
+      updatePills();
+    })();
+  </script>
+</body>
+</html>
+

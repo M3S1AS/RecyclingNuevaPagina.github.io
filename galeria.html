@@ -1,0 +1,1304 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Galería - SC Recycling S.A.</title>
+  <meta name="description" content="Galería de productos, proyectos y procesos de SC Recycling S.A. en reciclaje plástico y madera ecológica en Itagüí, Colombia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="palette.css" />
+
+  <style>
+    .page-hero {
+      position: relative;
+      min-height: 430px;
+      padding: 94px 0 76px;
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      background:
+        linear-gradient(130deg, rgba(16,25,46,.96) 0%, rgba(26,38,69,.92) 54%, rgba(52,76,148,.88) 100%),
+        radial-gradient(circle at 72% 42%, rgba(255,255,255,.16), transparent 34%);
+    }
+    .page-hero::after {
+      content: "";
+      position: absolute;
+      inset: auto 0 0;
+      height: 92px;
+      background: linear-gradient(180deg, transparent, rgba(248,249,252,.1));
+      pointer-events: none;
+    }
+    .page-hero__word {
+      position: absolute;
+      right: -2vw;
+      bottom: -1.4rem;
+      font-family: var(--font-cond);
+      font-size: clamp(5rem, 18vw, 16rem);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.045);
+      user-select: none;
+      pointer-events: none;
+      white-space: nowrap;
+    }
+    .page-hero__inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(280px, .72fr);
+      gap: 54px;
+      align-items: center;
+    }
+    .page-hero__breadcrumb {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 18px;
+      font-family: var(--font-cond);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.42);
+    }
+    .page-hero__breadcrumb a { color: rgba(255,255,255,.62); }
+    .page-hero__breadcrumb a:hover { color: var(--white); }
+    .page-hero__title {
+      margin-bottom: 18px;
+      font-family: var(--font-cond);
+      font-size: clamp(3.3rem, 8vw, 7.2rem);
+      font-weight: 900;
+      line-height: .9;
+      letter-spacing: .03em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .page-hero__title em {
+      display: block;
+      font-family: var(--font-title);
+      font-style: italic;
+      color: #8fa8e4;
+      text-transform: none;
+    }
+    .page-hero__desc {
+      max-width: 520px;
+      color: rgba(255,255,255,.58);
+      line-height: 1.78;
+      font-size: .98rem;
+      font-weight: 300;
+    }
+    .hero-preview {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      grid-template-rows: 130px 130px;
+      gap: 12px;
+      transform: rotate(-2deg);
+    }
+    .hero-preview__tile {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: var(--radius-lg);
+      background: linear-gradient(145deg, rgba(255,255,255,.12), rgba(255,255,255,.025));
+      box-shadow: 0 20px 48px rgba(0,0,0,.18);
+    }
+    .hero-preview__tile:nth-child(1) { grid-row: span 2; background: linear-gradient(145deg,#20395f,#344c94,#172338); }
+    .hero-preview__tile:nth-child(2) { background: linear-gradient(145deg,#2d5e45,#6b8f45,#213d32); }
+    .hero-preview__tile:nth-child(3) { background: linear-gradient(145deg,#4d3a27,#8d6744,#2b251e); }
+    .hero-preview__tile span {
+      position: absolute;
+      left: 18px;
+      bottom: 16px;
+      font-family: var(--font-cond);
+      font-weight: 800;
+      font-size: .82rem;
+      letter-spacing: .13em;
+      color: rgba(255,255,255,.75);
+      text-transform: uppercase;
+    }
+
+    .gallery-page { background: var(--bg); }
+    .gallery-intro {
+      padding: 74px 0 38px;
+      background: var(--white);
+    }
+    .gallery-intro__grid {
+      display: grid;
+      grid-template-columns: minmax(0, .9fr) minmax(280px, .55fr);
+      gap: 56px;
+      align-items: end;
+    }
+    .gallery-intro__copy .section__header {
+      text-align: left;
+      margin-bottom: 0;
+    }
+    .gallery-intro__copy .section__desc {
+      margin: 18px 0 0;
+      max-width: 620px;
+    }
+    .gallery-stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+    .gallery-stat {
+      min-height: 108px;
+      padding: 18px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .gallery-stat strong {
+      font-family: var(--font-cond);
+      font-size: 2.4rem;
+      line-height: .9;
+      color: var(--blue);
+    }
+    .gallery-stat span {
+      font-family: var(--font-cond);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--text-400);
+    }
+
+    .gallery-filter { padding: 34px 0 84px; }
+    .gallery-filter__controls {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 34px;
+    }
+    .gallery-filter input[type="radio"] {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .filter-chip {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 38px;
+      padding: 8px 18px;
+      border: 1.5px solid var(--border-mid);
+      border-radius: var(--radius-full);
+      background: var(--white);
+      color: var(--text-400);
+      font-family: var(--font-cond);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: var(--tr);
+    }
+    .filter-chip:hover {
+      border-color: var(--blue);
+      color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-sm);
+    }
+    #filter-all:checked ~ .gallery-filter__controls label[for="filter-all"],
+    #filter-madera:checked ~ .gallery-filter__controls label[for="filter-madera"],
+    #filter-materia:checked ~ .gallery-filter__controls label[for="filter-materia"],
+    #filter-procesos:checked ~ .gallery-filter__controls label[for="filter-procesos"],
+    #filter-ambientes:checked ~ .gallery-filter__controls label[for="filter-ambientes"] {
+      background: var(--blue);
+      border-color: var(--blue);
+      color: var(--white);
+      box-shadow: var(--shadow-blue);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 16px;
+      align-items: stretch;
+    }
+    .gallery-card {
+      grid-column: span 4;
+      min-height: 270px;
+      position: relative;
+      overflow: hidden;
+      border-radius: var(--radius-lg);
+      background: var(--white);
+      box-shadow: var(--shadow-sm);
+      border: 1px solid var(--border);
+      transition: opacity .25s ease, transform .35s ease, box-shadow .35s ease;
+    }
+    .gallery-card--wide { grid-column: span 8; }
+    .gallery-card--tall { min-height: 390px; }
+    .gallery-card__visual {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(145deg, var(--c1), var(--c2));
+    }
+    .gallery-card__visual::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 24%, rgba(8,14,26,.7) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.045) 0 1px, transparent 1px 28px);
+    }
+    .gallery-card__visual img,
+    .lightbox__slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+    .gallery-card__icon {
+      position: relative;
+      z-index: 1;
+      width: 74px;
+      height: 74px;
+      color: rgba(255,255,255,.58);
+    }
+    .gallery-card__body {
+      position: absolute;
+      z-index: 2;
+      left: 24px;
+      right: 24px;
+      bottom: 22px;
+      color: var(--white);
+    }
+    .gallery-card__kicker {
+      display: inline-flex;
+      margin-bottom: 8px;
+      font-family: var(--font-cond);
+      font-size: .68rem;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.58);
+    }
+    .gallery-card h3 {
+      font-family: var(--font-title);
+      font-size: clamp(1.18rem, 2vw, 1.6rem);
+      line-height: 1.15;
+      margin-bottom: 8px;
+      color: var(--white);
+    }
+    .gallery-card p {
+      max-width: 480px;
+      font-size: .86rem;
+      line-height: 1.55;
+      color: rgba(255,255,255,.62);
+    }
+    .gallery-card__open {
+      position: absolute;
+      inset: 0;
+      z-index: 3;
+      width: auto;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: inherit;
+      background: transparent;
+      color: var(--blue);
+      transition: var(--tr);
+    }
+    .gallery-card__open svg {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      width: 40px;
+      height: 40px;
+      padding: 11px;
+      border-radius: 50%;
+      background: rgba(255,255,255,.92);
+      box-shadow: var(--shadow-md);
+      opacity: 0;
+      transform: translateY(-8px);
+      transition: var(--tr);
+    }
+    .gallery-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+    }
+    .gallery-card:hover .gallery-card__open svg {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .gallery-card--madera { --c1: #254c42; --c2: #6c8d43; }
+    .gallery-card--materia { --c1: #14284a; --c2: #344c94; }
+    .gallery-card--procesos { --c1: #3a2b22; --c2: #8b6844; }
+    .gallery-card--ambientes { --c1: #182038; --c2: #53668f; }
+    #filter-madera:checked ~ .gallery-grid .gallery-card:not([data-cat="madera"]),
+    #filter-materia:checked ~ .gallery-grid .gallery-card:not([data-cat="materia"]),
+    #filter-procesos:checked ~ .gallery-grid .gallery-card:not([data-cat="procesos"]),
+    #filter-ambientes:checked ~ .gallery-grid .gallery-card:not([data-cat="ambientes"]) {
+      opacity: .16;
+      transform: scale(.98);
+      pointer-events: none;
+      box-shadow: none;
+    }
+
+    .gallery-note {
+      margin-top: 28px;
+      padding: 18px 22px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--white);
+    }
+    .gallery-note p {
+      color: var(--text-400);
+      font-size: .92rem;
+      line-height: 1.65;
+    }
+    .gallery-note strong { color: var(--text-900); }
+
+    .lightbox-toggle {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 90;
+      display: none;
+      place-items: center;
+      padding: 28px;
+      background: rgba(8,14,26,.82);
+      backdrop-filter: blur(8px);
+    }
+    .lightbox:target { display: grid; }
+    .lightbox-toggle:checked + .lightbox { display: grid; }
+    .lightbox__panel {
+      position: relative;
+      width: min(940px, 100%);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background: var(--white);
+      box-shadow: 0 28px 90px rgba(0,0,0,.36);
+    }
+    .lightbox__radio {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .lightbox__stage {
+      position: relative;
+      min-height: 470px;
+      background: linear-gradient(145deg, var(--c1), var(--c2));
+    }
+    .lightbox__slide {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .28s ease;
+      background: linear-gradient(145deg, var(--c1), var(--c2));
+    }
+    .lightbox__slide::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background:
+        linear-gradient(180deg, transparent 0%, rgba(8,14,26,.28) 100%),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.04) 0 1px, transparent 1px 34px);
+      pointer-events: none;
+    }
+    .lightbox__slide span {
+      position: relative;
+      z-index: 1;
+      font-family: var(--font-cond);
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.72);
+    }
+    .lightbox__panel > .lightbox__radio:nth-of-type(1):checked ~ .lightbox__stage .lightbox__slide--1,
+    .lightbox__panel > .lightbox__radio:nth-of-type(2):checked ~ .lightbox__stage .lightbox__slide--2,
+    .lightbox__panel > .lightbox__radio:nth-of-type(3):checked ~ .lightbox__stage .lightbox__slide--3 {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .lightbox__nav {
+      position: absolute;
+      inset: 0;
+      z-index: 4;
+      display: none;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 18px;
+      pointer-events: none;
+    }
+    .lightbox__nav label {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      color: var(--blue);
+      box-shadow: var(--shadow-md);
+      cursor: pointer;
+      pointer-events: auto;
+      font-family: var(--font-cond);
+      font-size: 1.4rem;
+      font-weight: 900;
+      transition: var(--tr);
+    }
+    .lightbox__nav label:hover {
+      transform: scale(1.08);
+      background: var(--blue-xlight);
+    }
+    .lightbox__panel > .lightbox__radio:nth-of-type(1):checked ~ .lightbox__nav--1,
+    .lightbox__panel > .lightbox__radio:nth-of-type(2):checked ~ .lightbox__nav--2,
+    .lightbox__panel > .lightbox__radio:nth-of-type(3):checked ~ .lightbox__nav--3 {
+      display: flex;
+    }
+    .lightbox__count {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 5px 14px;
+      border-radius: var(--radius-full);
+      background: var(--blue-xlight);
+      color: var(--blue);
+      font-family: var(--font-cond);
+      font-size: .74rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+    .lightbox__caption {
+      padding: 24px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    .lightbox__caption h3 {
+      font-family: var(--font-title);
+      font-size: 1.45rem;
+      color: var(--text-900);
+      margin-bottom: 4px;
+    }
+    .lightbox__caption p {
+      color: var(--text-400);
+      font-size: .92rem;
+    }
+    .lightbox__close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      z-index: 8;
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(255,255,255,.94);
+      color: var(--blue);
+      box-shadow: var(--shadow-md);
+      font-family: var(--font-cond);
+      font-size: 1.4rem;
+      font-weight: 800;
+      cursor: pointer;
+    }
+    .page-cta {
+      position: relative;
+      overflow: hidden;
+      padding: 88px 0;
+      background: linear-gradient(130deg, #10192e 0%, #1a2645 58%, #344c94 100%);
+    }
+    .page-cta__inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    .page-cta__title {
+      font-family: var(--font-title);
+      font-size: clamp(2rem, 4vw, 3rem);
+      line-height: 1.2;
+      color: var(--white);
+      margin-bottom: 10px;
+    }
+    .page-cta__title em { color: #8fa8e4; }
+    .page-cta p {
+      max-width: 460px;
+      color: rgba(255,255,255,.52);
+      line-height: 1.7;
+    }
+    .section__tag--light {
+      color: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+    }
+    .btn--white {
+      background: var(--white);
+      color: var(--blue);
+      border: 2px solid var(--white);
+    }
+    .btn--white:hover {
+      background: var(--blue-xlight);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 980px) {
+      .page-hero__inner,
+      .gallery-intro__grid {
+        grid-template-columns: 1fr;
+      }
+      .hero-preview { max-width: 520px; }
+      .gallery-card,
+      .gallery-card--wide {
+        grid-column: span 6;
+      }
+    }
+    @media (max-width: 680px) {
+      .page-hero { min-height: auto; padding: 66px 0 58px; }
+      .hero-preview { grid-template-rows: 112px 112px; }
+      .gallery-stats { grid-template-columns: 1fr; }
+      .gallery-grid { grid-template-columns: 1fr; }
+      .gallery-card,
+      .gallery-card--wide {
+        grid-column: auto;
+        min-height: 260px;
+      }
+      .gallery-card--tall { min-height: 320px; }
+      .gallery-note,
+      .lightbox__caption,
+      .page-cta__inner {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .lightbox__visual { min-height: 330px; }
+    }
+    @media (max-width: 760px) {
+      .page-hero {
+        padding: 58px 0 46px;
+      }
+      .page-hero__word {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -8px;
+        font-size: clamp(4.2rem, 22vw, 8rem);
+      }
+      .page-hero__inner {
+        gap: 34px;
+      }
+      .page-hero__title {
+        font-size: clamp(2.8rem, 15vw, 5rem);
+      }
+      .page-hero__desc {
+        max-width: 100%;
+        font-size: .92rem;
+      }
+      .hero-preview {
+        width: 100%;
+        max-width: none;
+        grid-template-rows: 104px 104px;
+        transform: none;
+      }
+      .hero-preview__tile span {
+        left: 14px;
+        bottom: 12px;
+        font-size: .72rem;
+      }
+      .gallery-intro { padding: 58px 0 28px; }
+      .gallery-intro__grid { gap: 28px; }
+      .gallery-filter { padding: 26px 0 62px; }
+      .gallery-filter__controls {
+        justify-content: flex-start;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 6px;
+        scrollbar-width: none;
+      }
+      .gallery-filter__controls::-webkit-scrollbar { display: none; }
+      .filter-chip {
+        flex: 0 0 auto;
+        min-height: 36px;
+        padding-inline: 14px;
+      }
+      .gallery-card__body {
+        left: 18px;
+        right: 18px;
+        bottom: 18px;
+      }
+      .gallery-card p { font-size: .82rem; }
+      .gallery-note {
+        align-items: stretch;
+      }
+      .lightbox {
+        padding: 16px;
+        align-items: start;
+        overflow-y: auto;
+      }
+      .lightbox__panel {
+        margin-top: 18px;
+      }
+      .lightbox__stage {
+        min-height: min(60vh, 360px);
+      }
+      .lightbox__caption {
+        padding: 20px;
+      }
+      .lightbox__nav {
+        padding: 0 10px;
+      }
+      .lightbox__nav label {
+        width: 38px;
+        height: 38px;
+      }
+    }
+    @media (max-width: 420px) {
+      .hero-preview {
+        grid-template-columns: 1fr;
+        grid-template-rows: repeat(3, 92px);
+      }
+      .hero-preview__tile:nth-child(1) {
+        grid-row: auto;
+      }
+      .gallery-stat {
+        min-height: 88px;
+      }
+      .gallery-card,
+      .gallery-card--wide,
+      .gallery-card--tall {
+        min-height: 250px;
+      }
+      .gallery-card h3 {
+        font-size: 1.1rem;
+      }
+      .gallery-card__open svg {
+        top: 12px;
+        right: 12px;
+        width: 36px;
+        height: 36px;
+      }
+      .lightbox__caption h3 {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="topbar__inner container">
+      <span class="topbar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        PBX: (57) (4) 281 9068
+      </span>
+      <span class="topbar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lun - Vie &nbsp;·&nbsp; 7:00am - 5:00pm
+      </span>
+      <span class="topbar__item topbar__item--loc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        CL 51 No. 40-98, Itagüí, Colombia
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="social-rail" id="social-rail">
+      <a href="#" class="social-rail__link" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="#" class="social-rail__link" aria-label="LinkedIn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+      </a>
+      <a href="#" class="social-rail__link" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"/></svg>
+      </a>
+    </div>
+
+    <div class="navbar__inner container">
+      <a href="index.html" class="navbar__logo">
+        <img src="LOGO SC RECYCLING.png" alt="SC Recycling S.A." class="logo-img" />
+        <div class="logo-text">
+          <span class="lt-sc">SC</span>
+          <span class="lt-rec">Recycling</span>
+          <span class="lt-sa">S.A.</span>
+        </div>
+      </a>
+
+      <nav class="navbar__nav" id="nav-menu">
+        <a href="index.html#about" class="nav-link">Empresa</a>
+        <a href="servicios.html" class="nav-link">Servicios</a>
+        <div class="nav-dropdown">
+          <a href="productos.html" class="nav-link">
+            Productos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="11"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="materia-prima.html" class="dropdown-item">Materia Prima</a>
+            <div class="dropdown-sub">
+              <span class="dropdown-item dropdown-item--parent">
+                Madera Ecológica
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="9"><polyline points="9 18 15 12 9 6"/></svg>
+              </span>
+              <div class="dropdown-submenu">
+                <a href="decks.html" class="dropdown-item">Decks</a>
+                <a href="estibas.html" class="dropdown-item">Estibas</a>
+                <a href="mobiliario.html" class="dropdown-item">Mobiliario</a>
+                <a href="parques.html" class="dropdown-item">Parques Infantiles</a>
+                <a href="perfiles.html" class="dropdown-item">Perfiles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="galeria.html" class="nav-link nav-link--active">Galería</a>
+        <a href="contacto.html" class="nav-link nav-link--cta">Contacto</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="page-hero">
+    <div class="page-hero__word" aria-hidden="true">GALERÍA</div>
+    <div class="container page-hero__inner">
+      <div class="reveal-left">
+        <div class="page-hero__breadcrumb">
+          <a href="index.html">Inicio</a>
+          <span>/</span>
+          <span>Galería</span>
+        </div>
+        <h1 class="page-hero__title">Galería <em>de productos</em></h1>
+        <p class="page-hero__desc">Un recorrido visual por la madera ecológica, las materias primas recuperadas y los procesos que transforman excedentes plásticos en soluciones útiles, durables y sostenibles.</p>
+      </div>
+      <div class="hero-preview reveal-right" aria-hidden="true">
+        <div class="hero-preview__tile"><span>Madera ecológica</span></div>
+        <div class="hero-preview__tile"><span>Materia prima</span></div>
+        <div class="hero-preview__tile"><span>Procesos</span></div>
+      </div>
+    </div>
+  </section>
+
+  <main class="gallery-page">
+    <!-- ===== INTRO ===== -->
+    <section class="gallery-intro">
+      <div class="container gallery-intro__grid">
+        <div class="gallery-intro__copy reveal">
+          <div class="section__header">
+            <div class="section__tag">Ambientes reales</div>
+            <h2 class="section__title">NUESTRO TRABAJO <em>EN IMÁGENES</em></h2>
+            <p class="section__desc">Explora diferentes líneas de trabajo de SC Recycling S.A. en una galería pensada para mostrar productos, procesos, materiales recuperados y proyectos instalados.</p>
+          </div>
+        </div>
+        <div class="gallery-stats reveal-right">
+          <div class="gallery-stat">
+            <strong>24+</strong>
+            <span>Años de experiencia</span>
+          </div>
+          <div class="gallery-stat">
+            <strong>4</strong>
+            <span>Categorías visuales</span>
+          </div>
+          <div class="gallery-stat">
+            <strong>12</strong>
+            <span>Espacios para fotos</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== GALLERY ===== -->
+    <section class="gallery-filter">
+      <div class="container">
+        <input type="radio" name="gallery-filter" id="filter-all" checked />
+        <input type="radio" name="gallery-filter" id="filter-madera" />
+        <input type="radio" name="gallery-filter" id="filter-materia" />
+        <input type="radio" name="gallery-filter" id="filter-procesos" />
+        <input type="radio" name="gallery-filter" id="filter-ambientes" />
+
+        <div class="gallery-filter__controls reveal">
+          <label class="filter-chip" for="filter-all">Todo</label>
+          <label class="filter-chip" for="filter-madera">Madera ecológica</label>
+          <label class="filter-chip" for="filter-materia">Materia prima</label>
+          <label class="filter-chip" for="filter-procesos">Procesos</label>
+          <label class="filter-chip" for="filter-ambientes">Ambientes</label>
+        </div>
+
+        <div class="gallery-grid">
+          <article class="gallery-card gallery-card--wide gallery-card--madera reveal" data-cat="madera" style="--d:0s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-8h6v8"/><path d="M9 9h.01M15 9h.01"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-01" aria-label="Ampliar Eco mobiliario" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Madera ecológica</span>
+              <h3>Eco mobiliario para espacios públicos</h3>
+              <p>Recuadro principal para mostrar bancas, mesas, materas o piezas instaladas en exteriores.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--materia reveal" data-cat="materia" style="--d:.04s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 16V8a2 2 0 00-1-1.73l-7-4a2 2 0 00-2 0l-7 4A2 2 0 003 8v8a2 2 0 001 1.73l7 4a2 2 0 002 0l7-4A2 2 0 0021 16z"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-02" aria-label="Ampliar Materias primas" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Materia prima</span>
+              <h3>Resinas recuperadas</h3>
+              <p>Espacio para polietilenos, polipropilenos o mezclas listas para transformación.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--procesos reveal" data-cat="procesos" style="--d:.08s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 13h4l3 8 4-16 3 8h4"/><circle cx="12" cy="12" r="10"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-03" aria-label="Ampliar Proceso industrial" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Procesos</span>
+              <h3>Transformación industrial</h3>
+              <p>Recuadro para maquinaria, selección, molienda, aglutinado o peletizado.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--ambientes gallery-card--tall reveal" data-cat="ambientes" style="--d:.12s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M21 10c0 7-9 13-9 13S3 17 3 10a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-04" aria-label="Ampliar Ambientes exteriores" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Ambientes</span>
+              <h3>Instalaciones en sitio</h3>
+              <p>Formato vertical para proyectos instalados, senderos, decks o parques infantiles.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--madera reveal" data-cat="madera" style="--d:.16s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 20h16"/><path d="M6 20V9l6-5 6 5v11"/><path d="M9 20v-6h6v6"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-05" aria-label="Ampliar Eco estructuras" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Madera ecológica</span>
+              <h3>Eco estructuras</h3>
+              <p>Decks, senderos, pérgolas y perfiles para construcción sostenible.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--materia reveal" data-cat="materia" style="--d:.20s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M7 21h10"/><path d="M12 21V3"/><path d="M5 7h14"/><path d="M6 7l3 7H3l3-7z"/><path d="M18 7l3 7h-6l3-7z"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-06" aria-label="Ampliar Material clasificado" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Materia prima</span>
+              <h3>Material clasificado</h3>
+              <p>Imagen para selección de PEBD, PEAD, PP y mezclas recuperadas.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--wide gallery-card--procesos reveal" data-cat="procesos" style="--d:.24s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M12 2v6"/><path d="M12 16v6"/><path d="M4.93 4.93l4.24 4.24"/><path d="M14.83 14.83l4.24 4.24"/><path d="M2 12h6"/><path d="M16 12h6"/><path d="M4.93 19.07l4.24-4.24"/><path d="M14.83 9.17l4.24-4.24"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-07" aria-label="Ampliar Línea de reciclaje" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Procesos</span>
+              <h3>Línea de reciclaje y producción</h3>
+              <p>Un formato panorámico para enseñar planta, procesos continuos o equipos de producción.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--ambientes reveal" data-cat="ambientes" style="--d:.28s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M8 18l4-4 4 4"/><path d="M12 14V3"/><path d="M4 21h16"/><path d="M5 10h14"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-08" aria-label="Ampliar Parques infantiles" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Ambientes</span>
+              <h3>Parques infantiles</h3>
+              <p>Recuadro para mobiliario lúdico fabricado con materiales reciclados.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--madera reveal" data-cat="madera" style="--d:.32s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/><path d="M7 6v12"/><path d="M17 6v12"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-09" aria-label="Ampliar Perfilería" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Madera ecológica</span>
+              <h3>Perfilería plástica</h3>
+              <p>Parales, tablas y tablillas para aplicaciones industriales y urbanas.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--materia reveal" data-cat="materia" style="--d:.36s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M4 4h16v16H4z"/><path d="M4 9h16"/><path d="M9 20V9"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-10" aria-label="Ampliar Estibas plásticas" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Materia prima</span>
+              <h3>Estibas plásticas</h3>
+              <p>Zona lista para fotos de producto terminado o uso industrial.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--procesos reveal" data-cat="procesos" style="--d:.40s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M10 2v7.31"/><path d="M14 9.3V2"/><path d="M8.5 2h7"/><path d="M14 9.3a6.5 6.5 0 11-4 0"/><path d="M9 16h6"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-11" aria-label="Ampliar Control de calidad" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Procesos</span>
+              <h3>Control de calidad</h3>
+              <p>Espacio para laboratorio, pruebas, soporte técnico o asesoría post-venta.</p>
+            </div>
+          </article>
+
+          <article class="gallery-card gallery-card--wide gallery-card--ambientes reveal" data-cat="ambientes" style="--d:.44s">
+            <div class="gallery-card__visual">
+              <svg class="gallery-card__icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4"><path d="M2 20h20"/><path d="M5 20V8l7-5 7 5v12"/><path d="M9 20v-6h6v6"/><path d="M8 10h8"/></svg>
+            </div>
+            <label class="gallery-card__open" for="open-foto-12" aria-label="Ampliar Proyectos instalados" tabindex="0"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M15 3h6v6"/><path d="M10 14L21 3"/><path d="M21 14v5a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h5"/></svg></label>
+            <div class="gallery-card__body">
+              <span class="gallery-card__kicker">Ambientes</span>
+              <h3>Proyectos instalados en espacios reales</h3>
+              <p>Un cierre visual amplio para mostrar resultados finales, antes/después o aplicaciones urbanas.</p>
+            </div>
+          </article>
+        </div>
+
+        <div class="gallery-note reveal">
+          <p><strong>¿Quieres conocer más?</strong> Nuestro equipo puede orientarte sobre materiales recuperados, productos en madera ecológica y soluciones sostenibles para tu proyecto.</p>
+          <a href="contacto.html" class="btn btn--primary btn--sm">Contactar</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===== CTA ===== -->
+    <section class="page-cta">
+      <div class="container page-cta__inner">
+        <div class="reveal">
+          <div class="section__tag section__tag--light">¿Desea contactarnos?</div>
+          <h2 class="page-cta__title">Convirtamos tus excedentes <em>en soluciones</em></h2>
+          <p>Si tienes material disponible o necesitas productos en madera ecológica, podemos ayudarte a elegir la alternativa adecuada.</p>
+        </div>
+        <a href="contacto.html" class="btn btn--white reveal-right">Ir a Contacto</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== LIGHTBOXES ===== -->
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-01" />
+  <div class="lightbox" id="foto-01">
+    <div class="lightbox__panel gallery-card--madera">
+      <label class="lightbox__close" for="open-foto-01">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-01-carousel" id="foto-01-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-01-carousel" id="foto-01-b" />
+      <input class="lightbox__radio" type="radio" name="foto-01-carousel" id="foto-01-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Eco mobiliario · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Eco mobiliario · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Eco mobiliario · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-01-c">‹</label><label for="foto-01-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-01-a">‹</label><label for="foto-01-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-01-b">‹</label><label for="foto-01-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Eco mobiliario para espacios públicos</h3><p>Grupo sugerido: <code>galeria/eco-mobiliario/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-02" />
+  <div class="lightbox" id="foto-02">
+    <div class="lightbox__panel gallery-card--materia">
+      <label class="lightbox__close" for="open-foto-02">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-02-carousel" id="foto-02-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-02-carousel" id="foto-02-b" />
+      <input class="lightbox__radio" type="radio" name="foto-02-carousel" id="foto-02-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Resinas recuperadas · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Resinas recuperadas · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Resinas recuperadas · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-02-c">‹</label><label for="foto-02-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-02-a">‹</label><label for="foto-02-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-02-b">‹</label><label for="foto-02-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Resinas recuperadas</h3><p>Grupo sugerido: <code>galeria/resinas-recuperadas/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-03" />
+  <div class="lightbox" id="foto-03">
+    <div class="lightbox__panel gallery-card--procesos">
+      <label class="lightbox__close" for="open-foto-03">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-03-carousel" id="foto-03-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-03-carousel" id="foto-03-b" />
+      <input class="lightbox__radio" type="radio" name="foto-03-carousel" id="foto-03-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Transformación industrial · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Transformación industrial · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Transformación industrial · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-03-c">‹</label><label for="foto-03-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-03-a">‹</label><label for="foto-03-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-03-b">‹</label><label for="foto-03-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Transformación industrial</h3><p>Grupo sugerido: <code>galeria/transformacion-industrial/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-04" />
+  <div class="lightbox" id="foto-04">
+    <div class="lightbox__panel gallery-card--ambientes">
+      <label class="lightbox__close" for="open-foto-04">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-04-carousel" id="foto-04-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-04-carousel" id="foto-04-b" />
+      <input class="lightbox__radio" type="radio" name="foto-04-carousel" id="foto-04-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Instalaciones en sitio · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Instalaciones en sitio · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Instalaciones en sitio · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-04-c">‹</label><label for="foto-04-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-04-a">‹</label><label for="foto-04-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-04-b">‹</label><label for="foto-04-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Instalaciones en sitio</h3><p>Grupo sugerido: <code>galeria/instalaciones-en-sitio/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-05" />
+  <div class="lightbox" id="foto-05">
+    <div class="lightbox__panel gallery-card--madera">
+      <label class="lightbox__close" for="open-foto-05">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-05-carousel" id="foto-05-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-05-carousel" id="foto-05-b" />
+      <input class="lightbox__radio" type="radio" name="foto-05-carousel" id="foto-05-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Eco estructuras · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Eco estructuras · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Eco estructuras · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-05-c">‹</label><label for="foto-05-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-05-a">‹</label><label for="foto-05-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-05-b">‹</label><label for="foto-05-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Eco estructuras</h3><p>Grupo sugerido: <code>galeria/eco-estructuras/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-06" />
+  <div class="lightbox" id="foto-06">
+    <div class="lightbox__panel gallery-card--materia">
+      <label class="lightbox__close" for="open-foto-06">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-06-carousel" id="foto-06-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-06-carousel" id="foto-06-b" />
+      <input class="lightbox__radio" type="radio" name="foto-06-carousel" id="foto-06-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Material clasificado · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Material clasificado · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Material clasificado · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-06-c">‹</label><label for="foto-06-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-06-a">‹</label><label for="foto-06-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-06-b">‹</label><label for="foto-06-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Material clasificado</h3><p>Grupo sugerido: <code>galeria/material-clasificado/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-07" />
+  <div class="lightbox" id="foto-07">
+    <div class="lightbox__panel gallery-card--procesos">
+      <label class="lightbox__close" for="open-foto-07">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-07-carousel" id="foto-07-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-07-carousel" id="foto-07-b" />
+      <input class="lightbox__radio" type="radio" name="foto-07-carousel" id="foto-07-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Línea de reciclaje · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Línea de reciclaje · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Línea de reciclaje · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-07-c">‹</label><label for="foto-07-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-07-a">‹</label><label for="foto-07-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-07-b">‹</label><label for="foto-07-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Línea de reciclaje y producción</h3><p>Grupo sugerido: <code>galeria/linea-reciclaje/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-08" />
+  <div class="lightbox" id="foto-08">
+    <div class="lightbox__panel gallery-card--ambientes">
+      <label class="lightbox__close" for="open-foto-08">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-08-carousel" id="foto-08-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-08-carousel" id="foto-08-b" />
+      <input class="lightbox__radio" type="radio" name="foto-08-carousel" id="foto-08-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Parques infantiles · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Parques infantiles · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Parques infantiles · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-08-c">‹</label><label for="foto-08-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-08-a">‹</label><label for="foto-08-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-08-b">‹</label><label for="foto-08-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Parques infantiles</h3><p>Grupo sugerido: <code>galeria/parques-infantiles/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-09" />
+  <div class="lightbox" id="foto-09">
+    <div class="lightbox__panel gallery-card--madera">
+      <label class="lightbox__close" for="open-foto-09">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-09-carousel" id="foto-09-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-09-carousel" id="foto-09-b" />
+      <input class="lightbox__radio" type="radio" name="foto-09-carousel" id="foto-09-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Perfilería plástica · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Perfilería plástica · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Perfilería plástica · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-09-c">‹</label><label for="foto-09-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-09-a">‹</label><label for="foto-09-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-09-b">‹</label><label for="foto-09-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Perfilería plástica</h3><p>Grupo sugerido: <code>galeria/perfileria-plastica/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-10" />
+  <div class="lightbox" id="foto-10">
+    <div class="lightbox__panel gallery-card--materia">
+      <label class="lightbox__close" for="open-foto-10">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-10-carousel" id="foto-10-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-10-carousel" id="foto-10-b" />
+      <input class="lightbox__radio" type="radio" name="foto-10-carousel" id="foto-10-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Estibas plásticas · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Estibas plásticas · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Estibas plásticas · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-10-c">‹</label><label for="foto-10-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-10-a">‹</label><label for="foto-10-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-10-b">‹</label><label for="foto-10-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Estibas plásticas</h3><p>Grupo sugerido: <code>galeria/estibas-plasticas/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-11" />
+  <div class="lightbox" id="foto-11">
+    <div class="lightbox__panel gallery-card--procesos">
+      <label class="lightbox__close" for="open-foto-11">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-11-carousel" id="foto-11-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-11-carousel" id="foto-11-b" />
+      <input class="lightbox__radio" type="radio" name="foto-11-carousel" id="foto-11-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Control de calidad · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Control de calidad · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Control de calidad · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-11-c">‹</label><label for="foto-11-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-11-a">‹</label><label for="foto-11-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-11-b">‹</label><label for="foto-11-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Control de calidad</h3><p>Grupo sugerido: <code>galeria/control-calidad/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <input class="lightbox-toggle" type="checkbox" id="open-foto-12" />
+  <div class="lightbox" id="foto-12">
+    <div class="lightbox__panel gallery-card--ambientes">
+      <label class="lightbox__close" for="open-foto-12">×</label>
+      <input class="lightbox__radio" type="radio" name="foto-12-carousel" id="foto-12-a" checked />
+      <input class="lightbox__radio" type="radio" name="foto-12-carousel" id="foto-12-b" />
+      <input class="lightbox__radio" type="radio" name="foto-12-carousel" id="foto-12-c" />
+      <div class="lightbox__stage">
+        <div class="lightbox__slide lightbox__slide--1"><span>Proyectos instalados · Foto 1</span></div>
+        <div class="lightbox__slide lightbox__slide--2"><span>Proyectos instalados · Foto 2</span></div>
+        <div class="lightbox__slide lightbox__slide--3"><span>Proyectos instalados · Foto 3</span></div>
+      </div>
+      <div class="lightbox__nav lightbox__nav--1"><label for="foto-12-c">‹</label><label for="foto-12-b">›</label></div>
+      <div class="lightbox__nav lightbox__nav--2"><label for="foto-12-a">‹</label><label for="foto-12-c">›</label></div>
+      <div class="lightbox__nav lightbox__nav--3"><label for="foto-12-b">‹</label><label for="foto-12-a">›</label></div>
+      <div class="lightbox__caption"><div><h3>Proyectos instalados en espacios reales</h3><p>Grupo sugerido: <code>galeria/proyectos-instalados/</code></p></div><span class="lightbox__count">3 fotos</span></div>
+    </div>
+  </div>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__top container">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo footer__logo">
+          <img src="LOGO SC RECYCLING.png" alt="SC Recycling S.A." class="logo-img" />
+          <div class="logo-text">
+            <span class="lt-sc">SC</span>
+            <span class="lt-rec">Recycling</span>
+            <span class="lt-sa">S.A.</span>
+          </div>
+        </a>
+        <p>Empresa Sueco-Colombiana comprometida con el reciclaje responsable y el desarrollo sostenible desde el año 2000.</p>
+        <p class="footer__lema">REDUCE · RECICLA · REUTILIZA</p>
+      </div>
+      <div class="footer__nav">
+        <h5>Navegación</h5>
+        <a href="index.html">Inicio</a>
+        <a href="index.html#about">Empresa</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer__nav">
+        <h5>Productos</h5>
+        <a href="materia-prima.html">Materia Prima</a>
+        <a href="decks.html">Decks</a>
+        <a href="estibas.html">Estibas</a>
+        <a href="mobiliario.html">Mobiliario</a>
+        <a href="parques.html">Parques Infantiles</a>
+        <a href="perfiles.html">Perfiles</a>
+      </div>
+      <div class="footer__contact">
+        <h5>Contacto</h5>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> CL 51 No. 40-98, Itagüí</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg> (57) (4) 281 9068</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lun-Vie 7:00am - 5:00pm</p>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>&copy; 2026 SC Recycling S.A. Todos los derechos reservados.</p>
+      <p>Itagüí, Antioquia, Colombia</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/573000000000?text=Hola%20SC%20Recycling%2C%20quiero%20recibir%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16.02 4.5A11.41 11.41 0 004.6 15.9c0 2.01.53 3.98 1.54 5.7L4.5 27.5l6.04-1.58a11.38 11.38 0 005.48 1.39h.01A11.41 11.41 0 0016.02 4.5zm0 20.86h-.01c-1.71 0-3.38-.46-4.84-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.43 9.43 0 01-1.44-5.03 9.49 9.49 0 119.49 9.46z"/>
+      <path d="M21.22 18.25c-.28-.14-1.68-.83-1.94-.92-.26-.1-.45-.14-.64.14-.19.28-.73.92-.9 1.11-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4a8.5 8.5 0 01-1.57-1.95c-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.68-.69 1.92-1.35.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.55-.33z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+

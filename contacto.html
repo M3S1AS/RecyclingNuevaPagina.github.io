@@ -1,0 +1,691 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contacto - SC Recycling S.A.</title>
+  <meta name="description" content="Contacta a SC Recycling S.A. por correo, WhatsApp, Instagram o teléfono fijo. Empresa de reciclaje de plásticos y madera ecológica en Itagüí, Colombia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Barlow+Condensed:wght@300;400;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="palette.css" />
+
+  <style>
+    .page-hero {
+      position: relative;
+      overflow: hidden;
+      min-height: 430px;
+      padding: 94px 0 78px;
+      display: flex;
+      align-items: center;
+      background:
+        linear-gradient(130deg, rgba(16,25,46,.97) 0%, rgba(26,38,69,.94) 58%, rgba(52,76,148,.88) 100%),
+        radial-gradient(circle at 78% 36%, rgba(255,255,255,.16), transparent 33%);
+    }
+    .page-hero__word {
+      position: absolute;
+      right: -2vw;
+      bottom: -1.2rem;
+      font-family: var(--font-cond);
+      font-size: clamp(5rem, 18vw, 16rem);
+      font-weight: 900;
+      line-height: .78;
+      letter-spacing: .06em;
+      color: rgba(255,255,255,.045);
+      white-space: nowrap;
+      pointer-events: none;
+      user-select: none;
+    }
+    .page-hero__inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(300px, .72fr);
+      gap: 54px;
+      align-items: center;
+    }
+    .page-hero__breadcrumb {
+      display: flex;
+      gap: 8px;
+      align-items: center;
+      margin-bottom: 18px;
+      font-family: var(--font-cond);
+      font-size: .74rem;
+      font-weight: 700;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.42);
+    }
+    .page-hero__breadcrumb a { color: rgba(255,255,255,.62); }
+    .page-hero__breadcrumb a:hover { color: var(--white); }
+    .page-hero__title {
+      margin-bottom: 18px;
+      font-family: var(--font-cond);
+      font-size: clamp(3rem, 7vw, 6.2rem);
+      font-weight: 900;
+      line-height: .92;
+      letter-spacing: .03em;
+      color: var(--white);
+      text-transform: uppercase;
+    }
+    .page-hero__title em {
+      display: block;
+      font-family: var(--font-title);
+      font-style: italic;
+      color: #8fa8e4;
+      text-transform: none;
+    }
+    .page-hero__desc {
+      max-width: 540px;
+      color: rgba(255,255,255,.58);
+      line-height: 1.78;
+      font-size: .98rem;
+      font-weight: 300;
+    }
+    .page-hero .reveal-left,
+    .page-hero .reveal-right {
+      opacity: 1;
+      transform: none;
+    }
+    .contact-orbit {
+      position: relative;
+      width: 360px;
+      height: 360px;
+      margin-left: auto;
+      display: grid;
+      place-items: center;
+    }
+    .contact-orbit::before,
+    .contact-orbit::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .contact-orbit::before { inset: 0; }
+    .contact-orbit::after { inset: 58px; border-color: rgba(143,168,228,.16); }
+    .contact-orbit__logo {
+      position: relative;
+      z-index: 2;
+      width: 210px;
+      height: 210px;
+      object-fit: contain;
+      opacity: .96;
+      filter: drop-shadow(0 26px 46px rgba(0,0,0,.36));
+    }
+
+    .contact-page { background: var(--bg); }
+    .contact-actions {
+      padding: 78px 0 44px;
+      background: var(--white);
+    }
+    .contact-actions__head {
+      display: flex;
+      justify-content: space-between;
+      gap: 36px;
+      align-items: end;
+      margin-bottom: 34px;
+    }
+    .contact-actions__head .section__header {
+      text-align: left;
+      margin-bottom: 0;
+    }
+    .contact-actions__head .section__desc {
+      margin: 16px 0 0;
+      max-width: 560px;
+    }
+    .quick-contact-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    .quick-contact {
+      min-height: 214px;
+      padding: 24px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 22px;
+      transition: var(--tr);
+    }
+    .quick-contact:hover {
+      transform: translateY(-6px);
+      border-color: var(--blue);
+      box-shadow: var(--shadow-lg);
+      background: var(--white);
+    }
+    .quick-contact__icon {
+      width: 46px;
+      height: 46px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--blue-xlight);
+      color: var(--blue);
+    }
+    .quick-contact--whatsapp .quick-contact__icon {
+      background: rgba(37,211,102,.12);
+      color: #16a34a;
+    }
+    .quick-contact--instagram .quick-contact__icon {
+      background: rgba(52,76,148,.12);
+      color: var(--blue);
+    }
+    .quick-contact--linkedin .quick-contact__icon {
+      background: rgba(10,102,194,.12);
+      color: #0a66c2;
+    }
+    .quick-contact--whatsapp:hover { border-color: rgba(37,211,102,.45); }
+    .quick-contact--instagram:hover { border-color: rgba(52,76,148,.45); }
+    .quick-contact--linkedin:hover { border-color: rgba(10,102,194,.45); }
+    .quick-contact__icon svg {
+      width: 18px;
+      height: 18px;
+      overflow: visible;
+      stroke-width: 1.65;
+    }
+    .quick-contact h3 {
+      font-family: var(--font-title);
+      font-size: 1.18rem;
+      line-height: 1.2;
+      color: var(--text-900);
+      margin-bottom: 8px;
+    }
+    .quick-contact p {
+      font-size: .87rem;
+      line-height: 1.55;
+      color: var(--text-400);
+    }
+    .quick-contact__link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-family: var(--font-cond);
+      font-size: .76rem;
+      font-weight: 800;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--blue);
+    }
+    .quick-contact__link svg { width: 14px; height: 14px; }
+
+    .contact-main {
+      padding: 84px 0 92px;
+    }
+    .contact-main__grid {
+      display: grid;
+      grid-template-columns: minmax(0, .78fr) minmax(360px, 1fr);
+      gap: 42px;
+      align-items: start;
+    }
+    .contact-info--page {
+      padding: 8px 0;
+    }
+    .contact-info--page .section__tag {
+      margin-bottom: 26px;
+    }
+    .contact-info--page .section__title {
+      text-align: left;
+      margin-bottom: 22px;
+    }
+    .contact-info--page .contact-socials {
+      margin-top: 34px;
+    }
+    .contact-panel {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 34px;
+      box-shadow: var(--shadow-sm);
+    }
+    .contact-panel__title {
+      font-family: var(--font-title);
+      font-size: 1.35rem;
+      color: var(--text-900);
+      margin-bottom: 22px;
+    }
+    .contact-data {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .contact-data li {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .contact-data li:last-child {
+      padding-bottom: 0;
+      border-bottom: 0;
+    }
+    .contact-data strong {
+      display: block;
+      font-size: .9rem;
+      color: var(--text-900);
+      margin-bottom: 2px;
+    }
+    .contact-data span,
+    .contact-data a {
+      font-size: .88rem;
+      color: var(--text-400);
+      line-height: 1.55;
+    }
+    .contact-data a:hover { color: var(--blue); }
+    .contact-map {
+      margin-top: 18px;
+      min-height: 180px;
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      background:
+        linear-gradient(135deg, rgba(52,76,148,.9), rgba(19,35,68,.94)),
+        repeating-linear-gradient(90deg, rgba(255,255,255,.08) 0 1px, transparent 1px 26px);
+      display: flex;
+      align-items: flex-end;
+      padding: 24px;
+      color: var(--white);
+      position: relative;
+    }
+    .contact-map::before {
+      content: "";
+      position: absolute;
+      width: 120px;
+      height: 120px;
+      border: 1px solid rgba(255,255,255,.14);
+      border-radius: 50%;
+      top: 22px;
+      right: 26px;
+    }
+    .contact-map strong {
+      display: block;
+      font-family: var(--font-cond);
+      font-size: 1rem;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .contact-map span {
+      color: rgba(255,255,255,.62);
+      font-size: .9rem;
+    }
+    .contact-form--page {
+      padding: 42px 38px;
+    }
+    .form-note {
+      margin-top: -14px;
+      margin-bottom: 24px;
+      color: var(--text-400);
+      font-size: .9rem;
+      line-height: 1.6;
+    }
+    .section__tag--light {
+      color: rgba(255,255,255,.7);
+      background: rgba(255,255,255,.08);
+      border-color: rgba(255,255,255,.14);
+    }
+
+    @media (max-width: 1040px) {
+      .quick-contact-grid { grid-template-columns: repeat(2, 1fr); }
+      .contact-main__grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    @media (max-width: 860px) {
+      .page-hero__inner {
+        grid-template-columns: 1fr;
+      }
+      .contact-orbit { margin: 0 auto; }
+    }
+    @media (max-width: 680px) {
+      .page-hero { min-height: auto; padding: 66px 0 58px; }
+      .contact-orbit { width: 250px; height: 250px; }
+      .contact-orbit__logo { width: 170px; height: 170px; }
+      .contact-actions__head {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .quick-contact-grid { grid-template-columns: 1fr; }
+      .contact-panel,
+      .contact-form--page { padding: 28px 22px; }
+      .form-row { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 760px) {
+      .page-hero {
+        min-height: auto;
+        padding: 58px 0 46px;
+      }
+      .page-hero__word {
+        right: auto;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: -8px;
+        font-size: clamp(4rem, 20vw, 8rem);
+      }
+      .page-hero__inner { gap: 30px; }
+      .page-hero__title {
+        font-size: clamp(2.8rem, 15vw, 5rem);
+      }
+      .page-hero__desc {
+        max-width: 100%;
+        font-size: .92rem;
+      }
+      .contact-orbit {
+        margin-inline: auto;
+      }
+      .contact-actions {
+        padding: 58px 0 34px;
+      }
+      .contact-actions__head {
+        margin-bottom: 28px;
+      }
+      .quick-contact {
+        min-height: 0;
+        padding: 22px;
+        gap: 18px;
+      }
+      .quick-contact__link {
+        align-self: flex-start;
+      }
+      .contact-main {
+        padding: 54px 0 68px;
+      }
+      .contact-main__grid {
+        gap: 30px;
+      }
+      .contact-map {
+        min-height: 150px;
+        padding: 20px;
+      }
+    }
+    @media (max-width: 420px) {
+      .contact-orbit {
+        width: min(220px, 78vw);
+        height: min(220px, 78vw);
+      }
+      .contact-orbit::after { inset: 34px; }
+      .contact-orbit__logo {
+        width: min(150px, 54vw);
+        height: min(150px, 54vw);
+      }
+      .quick-contact {
+        padding: 20px 18px;
+      }
+      .quick-contact h3 {
+        font-size: 1.05rem;
+      }
+      .quick-contact p,
+      .contact-data span,
+      .contact-data a {
+        font-size: .84rem;
+      }
+      .contact-data li {
+        gap: 10px;
+      }
+      .contact-map::before {
+        width: 86px;
+        height: 86px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ===== TOPBAR ===== -->
+  <div class="topbar">
+    <div class="topbar__inner container">
+      <span class="topbar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+        PBX: (57) (4) 281 9068
+      </span>
+      <span class="topbar__item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        Lun - Vie &nbsp;·&nbsp; 7:00am - 5:00pm
+      </span>
+      <span class="topbar__item topbar__item--loc">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        CL 51 No. 40-98, Itagüí, Colombia
+      </span>
+    </div>
+  </div>
+
+  <!-- ===== NAVBAR ===== -->
+  <header class="navbar" id="navbar">
+    <div class="social-rail" id="social-rail">
+      <a href="https://www.instagram.com/" class="social-rail__link" aria-label="Instagram" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+      </a>
+      <a href="mailto:y.garcia@screcyclingsa.com.co" class="social-rail__link" aria-label="Correo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M4 4h16a2 2 0 012 2v12a2 2 0 01-2 2H4a2 2 0 01-2-2V6a2 2 0 012-2z"/><polyline points="22 6 12 13 2 6"/></svg>
+      </a>
+      <a href="tel:+5742819068" class="social-rail__link" aria-label="Teléfono">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg>
+      </a>
+    </div>
+
+    <div class="navbar__inner container">
+      <a href="index.html" class="navbar__logo">
+        <img src="LOGO SC RECYCLING.png" alt="SC Recycling S.A." class="logo-img" />
+        <div class="logo-text">
+          <span class="lt-sc">SC</span>
+          <span class="lt-rec">Recycling</span>
+          <span class="lt-sa">S.A.</span>
+        </div>
+      </a>
+
+      <nav class="navbar__nav" id="nav-menu">
+        <a href="index.html#about" class="nav-link">Empresa</a>
+        <a href="servicios.html" class="nav-link">Servicios</a>
+        <div class="nav-dropdown">
+          <a href="productos.html" class="nav-link">
+            Productos
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="11"><polyline points="6 9 12 15 18 9"/></svg>
+          </a>
+          <div class="dropdown-menu">
+            <a href="materia-prima.html" class="dropdown-item">Materia Prima</a>
+            <div class="dropdown-sub">
+              <span class="dropdown-item dropdown-item--parent">
+                Madera Ecológica
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" width="9"><polyline points="9 18 15 12 9 6"/></svg>
+              </span>
+              <div class="dropdown-submenu">
+                <a href="decks.html" class="dropdown-item">Decks</a>
+                <a href="estibas.html" class="dropdown-item">Estibas</a>
+                <a href="mobiliario.html" class="dropdown-item">Mobiliario</a>
+                <a href="parques.html" class="dropdown-item">Parques Infantiles</a>
+                <a href="perfiles.html" class="dropdown-item">Perfiles</a>
+              </div>
+            </div>
+          </div>
+        </div>
+        <a href="galeria.html" class="nav-link">Galería</a>
+        <a href="contacto.html" class="nav-link nav-link--cta nav-link--active">Contacto</a>
+      </nav>
+
+      <button class="hamburger" id="hamburger" aria-label="Menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ===== HERO ===== -->
+  <section class="page-hero">
+    <div class="page-hero__word" aria-hidden="true">CONTACTO</div>
+    <div class="container page-hero__inner">
+      <div class="reveal-left">
+        <div class="page-hero__breadcrumb">
+          <a href="index.html">Inicio</a>
+          <span>/</span>
+          <span>Contacto</span>
+        </div>
+        <h1 class="page-hero__title">Hablemos <em>de tu proyecto</em></h1>
+        <p class="page-hero__desc">Estamos listos para atender solicitudes de materia prima recuperada, madera ecológica, manejo de excedentes industriales y soporte técnico.</p>
+      </div>
+      <div class="contact-orbit reveal-right" aria-hidden="true">
+        <img src="LOGO SC RECYCLING.png" alt="" class="contact-orbit__logo" />
+      </div>
+    </div>
+  </section>
+
+  <main class="contact-page">
+    <!-- ===== CONTACT FORM ===== -->
+    <section class="contact-main">
+      <div class="container contact-main__grid">
+        <aside class="contact-info contact-info--page reveal-left">
+          <div class="section__tag">Contáctenos</div>
+          <h2 class="section__title">TRABAJEMOS<br/><em>JUNTOS</em></h2>
+          <p class="contact-info__desc">¿Tienes excedentes plásticos? ¿Necesitas materia prima reciclada o Madera Ecológica? Estamos listos.</p>
+          <ul class="contact-info__list">
+            <li>
+              <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+              <div><strong>Dirección</strong><span>CL 51 No. 40-98, Itagüí, Antioquia</span></div>
+            </li>
+            <li>
+              <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81 19.79 19.79 0 01.12 2.18 2 2 0 012.11 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 14.92v2z"/></svg></div>
+              <div><strong>Teléfono</strong><span>PBX: (57) (4) 281 9068</span></div>
+            </li>
+            <li>
+              <div class="ci-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+              <div><strong>Horario</strong><span>Lunes - Viernes: 7:00am - 5:00pm</span></div>
+            </li>
+          </ul>
+          <div class="contact-socials">
+            <h3>Redes sociales</h3>
+            <div class="contact-socials__grid">
+              <a href="https://wa.me/573000000000?text=Hola%20SC%20Recycling%2C%20quiero%20recibir%20informaci%C3%B3n." target="_blank" rel="noopener" class="contact-social contact-social--whatsapp">
+                <span class="contact-social__icon">
+                  <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true"><path d="M16.02 4.5A11.41 11.41 0 004.6 15.9c0 2.01.53 3.98 1.54 5.7L4.5 27.5l6.04-1.58a11.38 11.38 0 005.48 1.39h.01A11.41 11.41 0 0016.02 4.5zm0 20.86h-.01c-1.71 0-3.38-.46-4.84-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.43 9.43 0 01-1.44-5.03 9.49 9.49 0 119.49 9.46z"/><path d="M21.22 18.25c-.28-.14-1.68-.83-1.94-.92-.26-.1-.45-.14-.64.14-.19.28-.73.92-.9 1.11-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4a8.5 8.5 0 01-1.57-1.95c-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.68-.69 1.92-1.35.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.55-.33z"/></svg>
+                </span>
+                <span><strong>WhatsApp</strong><small>Escríbenos directamente</small></span>
+              </a>
+              <a href="https://www.instagram.com/" target="_blank" rel="noopener" class="contact-social contact-social--instagram">
+                <span class="contact-social__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+                </span>
+                <span><strong>Instagram</strong><small>Conoce nuestro trabajo</small></span>
+              </a>
+              <a href="https://www.linkedin.com/" target="_blank" rel="noopener" class="contact-social contact-social--linkedin">
+                <span class="contact-social__icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>
+                </span>
+                <span><strong>LinkedIn</strong><small>Conecta con la empresa</small></span>
+              </a>
+            </div>
+          </div>
+          <a href="contacto.html" class="btn btn--outline-dark">Ver página de contacto completa →</a>
+        </aside>
+
+        <form class="contact-form contact-form--page reveal-right" id="contact-form" novalidate>
+          <h3 class="form-title">Envíanos un mensaje</h3>
+          <p class="form-note">Completa tus datos y cuéntanos qué necesitas. El formulario conserva el comportamiento del sitio actual.</p>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" id="nombre" name="nombre" placeholder="Tu nombre" required />
+            </div>
+            <div class="form-group">
+              <label for="email">Correo</label>
+              <input type="email" id="email" name="email" placeholder="correo@empresa.com" required />
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="telefono">Teléfono</label>
+              <input type="tel" id="telefono" name="telefono" placeholder="Número de contacto" />
+            </div>
+            <div class="form-group">
+              <label for="interes">Interés</label>
+              <select id="interes" name="interes">
+                <option value="">Selecciona una opción</option>
+                <option>Materia Prima Recuperada</option>
+                <option>Madera Ecológica</option>
+                <option>Manejo de Excedentes Industriales</option>
+                <option>Servicio Técnico Post-Venta</option>
+                <option>Comercialización de Resinas</option>
+                <option>Otro</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos sobre tu proyecto, material disponible o necesidad..."></textarea>
+          </div>
+
+          <button type="submit" class="btn btn--primary btn--full">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="15"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Enviar mensaje
+          </button>
+
+          <div class="form-success" id="form-success">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            ¡Mensaje enviado! Te contactaremos pronto.
+          </div>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== FOOTER ===== -->
+  <footer class="footer">
+    <div class="footer__top container">
+      <div class="footer__brand">
+        <a href="index.html" class="navbar__logo footer__logo">
+          <img src="LOGO SC RECYCLING.png" alt="SC Recycling S.A." class="logo-img" />
+          <div class="logo-text">
+            <span class="lt-sc">SC</span>
+            <span class="lt-rec">Recycling</span>
+            <span class="lt-sa">S.A.</span>
+          </div>
+        </a>
+        <p>Empresa Sueco-Colombiana comprometida con el reciclaje responsable y el desarrollo sostenible desde el año 2000.</p>
+        <p class="footer__lema">REDUCE · RECICLA · REUTILIZA</p>
+      </div>
+      <div class="footer__nav">
+        <h5>Navegación</h5>
+        <a href="index.html">Inicio</a>
+        <a href="index.html#about">Empresa</a>
+        <a href="servicios.html">Servicios</a>
+        <a href="productos.html">Productos</a>
+        <a href="galeria.html">Galería</a>
+        <a href="contacto.html">Contacto</a>
+      </div>
+      <div class="footer__nav">
+        <h5>Productos</h5>
+        <a href="materia-prima.html">Materia Prima</a>
+        <a href="decks.html">Decks</a>
+        <a href="estibas.html">Estibas</a>
+        <a href="mobiliario.html">Mobiliario</a>
+        <a href="parques.html">Parques Infantiles</a>
+        <a href="perfiles.html">Perfiles</a>
+      </div>
+      <div class="footer__contact">
+        <h5>Contacto</h5>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"/><circle cx="12" cy="10" r="3"/></svg> CL 51 No. 40-98, Itagüí</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 8.81"/></svg> (57) (4) 281 9068</p>
+        <p><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" width="13"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> Lun-Vie 7:00am - 5:00pm</p>
+      </div>
+    </div>
+    <div class="footer__bottom container">
+      <p>&copy; 2026 SC Recycling S.A. Todos los derechos reservados.</p>
+      <p>Itagüí, Antioquia, Colombia</p>
+    </div>
+  </footer>
+
+  <a class="whatsapp-float" href="https://wa.me/573000000000?text=Hola%20SC%20Recycling%2C%20quiero%20recibir%20informaci%C3%B3n." target="_blank" rel="noopener" aria-label="Contactar por WhatsApp">
+    <svg viewBox="0 0 32 32" fill="currentColor" aria-hidden="true">
+      <path d="M16.02 4.5A11.41 11.41 0 004.6 15.9c0 2.01.53 3.98 1.54 5.7L4.5 27.5l6.04-1.58a11.38 11.38 0 005.48 1.39h.01A11.41 11.41 0 0016.02 4.5zm0 20.86h-.01c-1.71 0-3.38-.46-4.84-1.32l-.35-.2-3.58.94.96-3.49-.23-.36a9.43 9.43 0 01-1.44-5.03 9.49 9.49 0 119.49 9.46z"/>
+      <path d="M21.22 18.25c-.28-.14-1.68-.83-1.94-.92-.26-.1-.45-.14-.64.14-.19.28-.73.92-.9 1.11-.17.19-.33.21-.61.07-.28-.14-1.19-.44-2.27-1.4a8.5 8.5 0 01-1.57-1.95c-.16-.28-.02-.43.12-.57.13-.13.28-.33.42-.5.14-.17.19-.28.28-.47.09-.19.05-.36-.02-.5-.07-.14-.64-1.55-.88-2.12-.23-.56-.47-.48-.64-.49h-.55c-.19 0-.5.07-.76.36-.26.28-1 1-1 2.43s1.02 2.82 1.16 3.01c.14.19 2.01 3.07 4.87 4.3.68.29 1.21.47 1.62.6.68.22 1.3.19 1.79.12.55-.08 1.68-.69 1.92-1.35.24-.66.24-1.23.17-1.35-.07-.12-.26-.19-.55-.33z"/>
+    </svg>
+  </a>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
